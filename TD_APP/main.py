@@ -3,7 +3,7 @@ import cv2
 img = cv2.imread('Perfil.png')
 
 classNames = []
-classFile = 'Labels.txt'
+classFile = '/Users/tiagocarvalho/Documents/GitHub/TD/TD_APP/Labels.txt'
 with open(classFile,'rt') as f:
     classNames = f.read().rstrip('\n').split('\n')
 #print(classNames)
