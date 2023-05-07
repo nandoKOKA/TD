@@ -1,15 +1,15 @@
 import cv2
 import numpy as np 
-img = cv2.imread('C:\\Users\\onlymr\\Desktop\\TD\\TD_APP\\Perfil.png')
+img = cv2.imread('/Users/tiagocarvalho/Documents/GitHub/TD/TD_APP/Perfil.png')
 
 classNames = []
-classFile = "C:\\Users\\onlymr\\Desktop\\TD\\TD_APP\\Labels.txt"
+classFile = "/Users/tiagocarvalho/Documents/GitHub/TD/TD_APP/Labels.txt"
 with open(classFile,'rt') as f:
     classNames = f.read().rstrip('\n').split('\n')
 #print(classNames)
 
-configPath = '/Users/tiagocarvalho/Downloads/ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
-weightsPath = '/Users/tiagocarvalho/Downloads/frozen_inference_graph.pb'
+configPath = '/Users/tiagocarvalho/Documents/GitHub/TD/TD_APP/ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
+weightsPath = '/Users/tiagocarvalho/Documents/GitHub/TD/TD_APP/frozen_inference_graph.pb'
 
 net = cv2.dnn_DetectionModel(weightsPath,configPath)
 net.setInputSize(320,320)
