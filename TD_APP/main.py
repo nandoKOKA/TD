@@ -1,5 +1,6 @@
 import cv2
 import numpy as np 
+
 img = cv2.imread('C:\\Users\\onlymr\\Desktop\\TD\\TD_APP\\Perfil.png')
 
 classNames = []
