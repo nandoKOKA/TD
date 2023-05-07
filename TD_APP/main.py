@@ -8,8 +8,8 @@ with open(classFile,'rt') as f:
     classNames = f.read().rstrip('\n').split('\n')
 #print(classNames)
 
-configPath = '/Users/tiagocarvalho/Downloads/ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
-weightsPath = '/Users/tiagocarvalho/Downloads/frozen_inference_graph.pb'
+configPath = '/Users/tiagocarvalho/Documents/GitHub/TD/TD_APP/ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
+weightsPath = '/Users/tiagocarvalho/Documents/GitHub/TD/TD_APP/frozen_inference_graph.pb'
 
 net = cv2.dnn_DetectionModel(weightsPath,configPath)
 net.setInputSize(320,320)
