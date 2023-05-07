@@ -17,8 +17,8 @@ font = cv2.FONT_HERSHEY_PLAIN
 #font = cv2.FONT_HERSHEY_COMPLEX
 Colors = np.random.uniform(0, 255, size=(len(classNames), 3))
 
-weightsPath = "frozen_inference_graph.pb"
-configPath = "ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt"
+weightsPath = "C:\Users\onlymr\Desktop\TD\TD_APP\frozen_inference_graph.pb"
+configPath = "C:\Users\onlymr\Desktop\TD\TD_APP\ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt"
 net = cv2.dnn_DetectionModel(weightsPath,configPath)
 net.setInputSize(320,320)
 net.setInputScale(1.0/ 127.5)
