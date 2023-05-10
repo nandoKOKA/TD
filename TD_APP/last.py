@@ -8,8 +8,8 @@ def fala(texto):
     print(texto)
     language = "en"
     output = gTTS(text=texto, lang=language, slow=False) 
-    output.save("C:\\Users\\Miguel Rebelo\\Desktop\\TD\\TD_APP\\sons\\output.mp3")
-    playsound("C:\\Users\\Miguel Rebelo\\Desktop\\TD\\TD_APP\\sons\\output.mp3")
+    output.save("/Users/tiagocarvalho/Documents/GitHub/TD/TD_APP/sons/output.mp3")
+    playsound("/Users/tiagocarvalho/Documents/GitHub/TD/TD_APP/sons/output.mp3")
 
 thres = 0.5
 
@@ -20,13 +20,13 @@ cap.set(4, 480)
 labels = []
 classNames = []
 
-classFile = "C:\\Users\\Miguel Rebelo\\Desktop\\TD\\TD_APP\\Labels.txt"
+classFile = "/Users/tiagocarvalho/Documents/GitHub/TD/TD_APP/Labels.txt"
 
 with open(classFile, 'rt') as f:
     classNames = [line.rstrip() for line in f]
 
-configPath = 'C:\\Users\\Miguel Rebelo\\Desktop\\TD\\TD_APP\\ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
-weightsPath = 'C:\\Users\\Miguel Rebelo\\Desktop\\TD\\TD_APP\\frozen_inference_graph.pb'
+configPath = '/Users/tiagocarvalho/Documents/GitHub/TD/TD_APP/ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
+weightsPath = '/Users/tiagocarvalho/Documents/GitHub/TD/TD_APP/frozen_inference_graph.pb'
 
 net = cv2.dnn_DetectionModel(weightsPath, configPath)
 net.setInputSize(320, 320)
