@@ -13,8 +13,8 @@ def fala(texto):
     playsound("/Users/tiagocarvalho/Documents/GitHub/TD/TD_APP/sons/output.mp3")
 
 thres = 0.5
-url="http://192.168.1.244:8080/video"
-cap = cv2.VideoCapture(url)
+#url="http://192.168.1.5:8080/video"
+cap = cv2.VideoCapture(0)
 cap.set(3, 640)
 cap.set(4, 480)
 
