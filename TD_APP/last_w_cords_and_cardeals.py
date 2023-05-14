@@ -13,8 +13,8 @@ def fala(texto):
     playsound("C:\\Users\\Miguel Rebelo\\Desktop\\TD\\TD_APP\\sons\\output.mp3")
 
 thres = 0.5
-
-cap = cv2.VideoCapture(0)
+url="http://192.168.1.244:8080/video"
+cap = cv2.VideoCapture(url)
 cap.set(3, 640)
 cap.set(4, 480)
 
