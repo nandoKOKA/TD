@@ -1,26 +1,30 @@
 import cv2
-import numpy as np 
+import numpy as np
 from gtts import gTTS
 from playsound import playsound
 import math
 
 # Função que diz os objetos que foram vistos
+
+
 def fala(texto):
     print(texto)
     language = "en"
-    output = gTTS(text=texto, lang=language, slow=False) 
-    output.save("/Users/tiagocarvalho/Documents/GitHub/TD/TD_APP/sons/output.mp3")
+    output = gTTS(text=texto, lang=language, slow=False)
+    output.save(
+        "/Users/tiagocarvalho/Documents/GitHub/TD/TD_APP/sons/output.mp3")
     playsound("/Users/tiagocarvalho/Documents/GitHub/TD/TD_APP/sons/output.mp3")
 
+
 thres = 0.5
-#url="http://192.168.1.5:8080/video"
+# url="http://192.168.1.5:8080/video"
 cap = cv2.VideoCapture(0)
 cap.set(3, 640)
 cap.set(4, 480)
 
 labels = []
 classNames = []
-detections =[]
+detections = []
 
 classFile = "/Users/tiagocarvalho/Documents/GitHub/TD/TD_APP/Labels.txt"
 
@@ -36,17 +40,19 @@ net.setInputScale(1.0 / 127.5)
 net.setInputMean((127.5, 127.5, 127.5))
 net.setInputSwapRB(True)
 
+
 def get_cardinal_direction(angle):
     directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW", "N"]
     index = round(angle / (360. / len(directions)))
     return directions[index]
+
 
 coordenadas_exibicao = []  # Move a definição da lista para fora do loop
 
 while True:
     success, img = cap.read()
     classIds, confs, bbox = net.detect(img, confThreshold=thres)
-    print(classIds,bbox) #mostra as leituras
+    print(classIds, bbox)  # mostra as leituras
 
     # Limpa as coordenadas exibidas anteriormente
     coordenadas_exibicao.clear()  # Limpa a lista a cada iteração
@@ -63,11 +69,11 @@ while True:
 
                 # Armazena as coordenadas da caixa delimitadora
                 coordenadas_exibicao.append((className, (box[0]+10, box[1])))
-                                            
+
      # Exibe as coordenadas e pontos cardeais dos objetos detectados
     for classe, (x, y) in coordenadas_exibicao:
         text = f"{classe}: ({x}, {y})"
-        
+
         # Calcula o ângulo em relação ao centro da imagem
         img_center_x = img.shape[1] // 2
         img_center_y = img.shape
@@ -83,13 +89,14 @@ while True:
         cardinal_direction = get_cardinal_direction(angle)
         text += f" ({cardinal_direction})"
 
-            # Exibe o texto com as coordenadas e pontos cardeais
-        cv2.putText(img, text, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
+        # Exibe o texto com as coordenadas e pontos cardeais
+        cv2.putText(img, text, (x, y - 10),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
 
-        cv2.imshow("Output", img)  
+        cv2.imshow("Output", img)
 
     if cv2.waitKey(1) & 0xFF == ord("q"):
-         break
+        break
 
 frase = []
 unique_classes = set()
@@ -104,11 +111,10 @@ for classe, (x, y) in coordenadas_exibicao:
     frase.append(f"a {classe} at ({x}, {y}) {cardinal_direction}")
 
 if len(frase) > 1:
-    last_item = frase.pop() # Remove o último item da lista
+    last_item = frase.pop()  # Remove o último item da lista
     frase.append(f"and {last_item}")
 
 fala(", ".join(frase))
 
 cv2.destroyAllWindows()
 cap.release()
-
